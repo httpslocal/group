@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <title>HTTPS Local Network CG -- 25 Oct 2018</title>
+  <link type="text/css" rel="STYLESHEET" href="https://www.w3.org/StyleSheets/base.css">
+  <link type="text/css" rel="STYLESHEET" href="https://www.w3.org/StyleSheets/public.css">
+  <link type="text/css" rel="STYLESHEET" href="https://www.w3.org/2004/02/minutes-style.css">
+  <meta content="HTTPS Local Network CG" name="Title">  
+  <meta charset="utf-8">
+</head>
+
+<body>
+<p><a href="http://www.w3.org/"><img src="https://www.w3.org/Icons/w3c_home" alt="W3C" border="0"
+height="48" width="72"></a> 
+</p>
+
+<h1> - DRAFT - </h1>
+<h1>HTTPS Local Network CG</h1>
+<h2>25 Oct 2018</h2>
+
+<p><a href='https://github.com/httpslocal/group/wiki/Meeting2018Oct25TPAC#agenda'>Agenda</a></p>
+
+
+
+
+<h2><a name="attendees">Attendees</a></h2>
+
+<div class="intro">
+<dl>
+<dt>Present</dt>
+<dd>Hiroshi, Sakakibara, Kouhei, Ueno, from, Google, yhirano_, Tomoaki_Mizushima, Michael, McCool, Micheal, peter</dd>
+<dt>Regrets</dt>
+<dd>Tomoyuki_Shimizu</dd>
+<dt>Chair</dt>
+<dd>igarashi, dajitomi </dd>
+<dt>Scribe</dt>
+<dd>ryo-k</dd>
+</dl>
+</div>
+
+<h2>Contents</h2>
+<ul>
+  <li><a href="#agenda">Topics</a>
+	<ol>
+	<li><a href="#item01">HTTPS in Local Network from the aspect of W3C WoT WG</a></li>
+<li><a href="#item02">Review and Discussion on Proposals [Presenters: Igarashi-san]</a></li>
+<li><a href="#item03">Publicly Trusted Cert. and Local Network Discovery by Tatsuya Igarashi (@igarashi50)</a></li>
+<li><a href="#item04">Draft proposals for supporting local HTTPS without publicly trusted Certificates by Daisuke Ajitomi</a></li>
+<li><a href="#item05">Wrap-up</a></li>
+
+	</ol>
+  </li>
+  <li><a href="#ActionSummary">Summary of Action Items</a></li>
+  <li><a href="#ResolutionSummary">Summary of Resolutions</a></li>
+</ul>
+<hr>
+<div class="meeting">
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; <a href="https://github.com/httpslocal/group/wiki/Meeting2018Oct25TPAC#agenda">https://github.com/httpslocal/group/wiki/Meeting2018Oct25TPAC#agenda</a>
+</p>
+
+<p class='irc'>
+&lt;<cite>McCool</cite>&gt; <a href="https://github.com/w3c/wot/blob/master/PRESENTATIONS/wot-https-local-10-2018.pptx">https://github.com/w3c/wot/blob/master/PRESENTATIONS/wot-https-local-10-2018.pptx</a>
+</p>
+
+<p class='phone'>
+Presentation material (will repost in GitHub repository later): <a href="https://s01.ninja/files/1025_httpslocal.pdf">https://s01.ninja/files/1025_httpslocal.pdf</a>
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; starting meeting by Igarashi-san who is chair
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Ajitomi-san is one of presenter
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; introduction
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Mizushima-san
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Maccool san from Intel@tokyo
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Igarashi, Aitomi, Sakakibara, Kajiwara, Kim, Hirano
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Horiushi, Minami, Yamada, Honma
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Explaining Agenda
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Present by Kajiwara-san
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; <a href="https://s01.ninja/files/1025_httpslocal.pdf">https://s01.ninja/files/1025_httpslocal.pdf</a>
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Why we need https-local?
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Browser requires https for various powerful features
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; installing self singed root CA is not good solution
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Introduce Github repo (refer slide)
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Scenario Overview
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; 1. direct access from UA
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; 2. Machine to Machine
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; 3. Cross Origin
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Home NAS device example
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; UC-07: Secure offline communication for Home Automation
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; <a href="https://github.com/httpslocal/usecases">https://github.com/httpslocal/usecases</a>
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; use case description
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Scenario: PublicCA Cert for devices accessible globally
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; e.g. Mozilla's Things Gateway
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Pros, Cons explained (refer slide)
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Scenario: Public CA Cer for devices accessible only in the local network
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Scenario: Private CA Cert
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Scenario: Self-Signed Certificate
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Move on: Missing use case? Scope too large?
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Questions?
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; McCool: use cases such as network camera
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; .. lot of iot devices deployed
+</p>
+
+<p class='irc'>
+&lt;<cite>McCool</cite>&gt; <a href="https://github.com/w3c/wot/blob/master/PRESENTATIONS/wot-https-local-10-2018.pptx">https://github.com/w3c/wot/blob/master/PRESENTATIONS/wot-https-local-10-2018.pptx</a>
+</p>
+
+<p class='irc'>
+&lt;<cite>scribe</cite>&gt; scribenick: ryo-k
+</p>
+
+<p class='phone'>
+<cite>mmc:</cite> Presenting the current state of Web of Things standardization and strawman proposal for httpslocal
+</p>
+
+<h3 id="item01">HTTPS in Local Network from the aspect of W3C WoT WG</h3>
+ <br>
+...: WoT CR to be published in January <br>
+... We still have a window for few small features, but not much space <br>
+... Deliverables: Thing Description (JSON serialization, JSON-LD) <br>
+...  <br>
+... (showing JSON-LD version of TD)
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; ...: slide page 4 <br>
+...: Use case of httpslocal - Have a directory of local device, and have it deliver TDs securely
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> q. security scheme standardized?
+</p>
+
+<p class='phone'>
+<cite>mmc:</cite> there are 8 of them
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; ...: s
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; ...: slide page 5
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; ...: slide page 6 <br>
+...: security schemes are overridable in a nested object <br>
+... security schemes : oauth2, psk, digest... <br>
+... (strawman)
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; ...: slide page 8 <br>
+...: there are standardized work in CoAPS specification. psk, cert, public <br>
+... one option here: what if we used these with HTTPS?
+</p>
+
+<p class='phone'>
+CoAP spec: <a href="https://tools.ietf.org/html/rfc7252">https://tools.ietf.org/html/rfc7252</a>
+</p>
+
+<p class='phone'>
+<cite>mmc:</cite> Public key is like using a local CA. <br>
+...: "psk": key pre-distribution is needed
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> We need a scheme that works under un-managed networks
+</p>
+
+<p class='phone'>
+<cite>mmc:</cite> Do our current set of parameters support the use cases?
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> We have already discussed pre-shared key based protocols such as J-PAKE
+</p>
+
+<p class='phone'>
+<cite>mmc:</cite> This is more for machine-to-machine than for browsers
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> psk/dtls/coaps equivalently secure as tls1.3?
+</p>
+
+<p class='phone'>
+<cite>mmc:</cite> dtls should be equivalently secure <br>
+...: Next thing on rechartered WG is to have a discovery service
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> browser vendor support for coaps?
+</p>
+
+<p class='phone'>
+<cite>mmc:</cite> actually mozilla just took out coaps. they might be going for their gateway product. google chrome does not support
+</p>
+
+<p class='phone'>
+<cite>kouhei:</cite> does psk with https mean extending TLS?
+</p>
+
+<p class='phone'>
+<cite>mmc:</cite> psk works under coap <br>
+...: it's where the key comes from
+</p>
+
+<p class='phone'>
+<cite>ryo-k:</cite> does that result in modifying all the tls libraries in the wild?
+</p>
+
+<p class='phone'>
+<cite>mmc:</cite> maybe the configuration files. currently this is a strawman proposal to take the definition of coaps and adapt it to https
+</p>
+
+<h3 id="item02">Review and Discussion on Proposals [Presenters: Igarashi-san]</h3>
+
+<h3 id="item03">Publicly Trusted Cert. and Local Network Discovery by Tatsuya Igarashi (@igarashi50)</h3>
+
+<p class='phone'>
+<cite>igarashi:</cite> Background. We had breakout sessions / discussions throughout 5 years of TPAC <br>
+...: Some solutions for using publicly trusted certificates on local servers e.g. PLEX
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; <a href="https://github.com/httpslocal/group/blob/master/20181025_F2F_TPAC2018/PubliclyTrustedCert_and_LocalNetworkDiscovery_W3C_TPAC2018.pdf">https://github.com/httpslocal/group/blob/master/20181025_F2F_TPAC2018/PubliclyTrustedCert_and_LocalNetworkDiscovery_W3C_TPAC2018.pdf</a> <br>
+...: We may use Let's Encrypt to get publicly trusted certs <br>
+... Talks on Local Network Discovery under W3C. Web and TV IG, DAS WG, Second Screen CG <br>
+... Why publicly trusted certs? (1) Not easy for consumers to install private cert <br>
+... also very risky to install private certs onto their devices <br>
+... Messy for users to manage security of many devices from different vendors. <br>
+... (3) costly for small companies to manage private PKI. <br>
+... Issues <br>
+... (1) scalability/privacy of public dns/CT servers <br>
+... (2) name binding issues
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; binding public domain and local network is the issue <br>
+...: in case of PLEX, the server should know the URL of devices in a secure manner <br>
+... using mDNS in public DNS works only for managed networks
+</p>
+
+<p class='phone'>
+<cite>kouhei:</cite> what is the threat model for privacy issues when using PLEX?
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> The domain name might include personal information eg. owner name, and if these are disclosed through CT logs, they are now in the public <br>
+...: PLEX means assigning global names to private IP address <br>
+... They can know about your private IP address
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; sakakibara: DNS has lot of privacy information is issue?
+</p>
+
+<p class='phone'>
+<cite>kouhei:</cite> what's the point on personalizing domain names?
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> You need a human-readable name so that users can distinguish between devices
+</p>
+
+<p class='phone'>
+<cite>hirano:</cite> the names should be unique, (how to handle uniqueness?)
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> please look at the URL for details
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; PLEX solution: <a href="https://support.plex.tv/articles/206225077-how-to-use-secure-server-connections/">https://support.plex.tv/articles/206225077-how-to-use-secure-server-connections/</a>
+</p>
+
+<p class='phone'>
+<cite>hirano:</cite> PLEX solution proposed by browser vendor?
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> No, we asked them about how they think. There is a scalability problem with CT servers
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; igarashi: PLEX solution has discovery issue
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; igarashi: introduce candidate solutions
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> Solution proposal. About scalability issue, short-term STAR certificates may work, because they don't need to be registered to CT logs <br>
+...: alternatively, using Technically Constrained Subordinate CA Certificate defined by CABF Baseline guideline <br>
+... Not supported by all major browsers yet
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; ajitomi: this solution is for intranet?
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; igarashi: no, not limited to that <br>
+...: about binding issue, extension to local network discovery can address the issue
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; igarashi: (propose strawman idea figure) <br>
+...: W3C is a good place for this discussion, because secure contexts/mixed content is discussed under Web Security Standards under W3C <br>
+... (slide of proposal @ TPAC2017)
+</p>
+
+<h3 id="item04">Draft proposals for supporting local HTTPS without publicly trusted Certificates by Daisuke Ajitomi</h3>
+
+<p class='phone'>
+<cite>ajitomi:</cite> Proposals NOT based on genuine Web PKI certificates
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; <a href="https://github.com/httpslocal/group/blob/master/20181025_F2F_TPAC2018/20181025.w3c-tpac.httpslocal.proposal.pdf">https://github.com/httpslocal/group/blob/master/20181025_F2F_TPAC2018/20181025.w3c-tpac.httpslocal.proposal.pdf</a> <br>
+...: HTTPS for Local Domains by Martin Thomson @ Mozilla <br>
+... Issues for Web PKI-based solutions. (1) The device vendor should be responsible for guaranteeing the authenticity of the device, not the user
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> there should be a different guideline for local devices. local devices need necessarily not comply to webtrust
+</p>
+
+<p class='phone'>
+<cite>ajitomi:</cite> (2) Readability/memorability of domain names <br>
+...: .local indicate that they are local network devices
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Martin's proposal: <a href="https://docs.google.com/document/d/170rFC91jqvpFrKIqG4K8Vox8AL4LeQXzfikBQXYPmzU/edit">https://docs.google.com/document/d/170rFC91jqvpFrKIqG4K8Vox8AL4LeQXzfikBQXYPmzU/edit</a> <br>
+...: Martin's proposal <br>
+... challenge for local domains - names are not unique <br>
+... solution - extending the origin makes this possible <br>
+... web origin consists of scheme host port
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; ...: proposed solution "extending origin" <br>
+...: adding additional property to that tuple guarantees uniqueness
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; ...: (showing UI figure in page 6)
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; igarashi: if there is lot of printers in a room, this can be an issue
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> some kind of discovery api would be necessary if there are multiple devices of same vendor exists
+</p>
+
+<p class='phone'>
+<cite>hirano:</cite> maybe discovery api out of scope for https in local domains?
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> the proposal does not talk about uniqueness of local domains.
+</p>
+
+<p class='phone'>
+<cite>kouhei:</cite> it addresses the uniqueness of local domains by extending the "origin" by adding SPKI hash
+</p>
+
+<p class='phone'>
+<cite>ajitomi:</cite> (shows the URL with SPKI hash, talks about TBD details)
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; martin proposed URL example: <a href="https://_NPNE4IG2GJ4VAL4DCHL64YSM5BII4A2X.printer.local">https://_NPNE4IG2GJ4VAL4DCHL64YSM5BII4A2X.printer.local</a> <br>
+...: Has drawbacks, like key changes, address changes, ...
+</p>
+
+<p class='phone'>
+@2: How does the browser find out which IP address "printer.local" ?
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> they may be discovered through mDNS
+</p>
+
+<p class='phone'>
+<cite>hirano:</cite> communication encrypted?
+</p>
+
+<p class='phone'>
+<cite>ajitomi:</cite> the way to install private CA on the browser is not mentioned <br>
+... Ajitomi-san's proposal
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; Ajitomi-san's proposal: <a href="https://github.com/dajiaji/proposals/blob/abstract_proposal/draft_proposal_supporting_local_https_communication.md">https://github.com/dajiaji/proposals/blob/abstract_proposal/draft_proposal_supporting_local_https_communication.md</a> <br>
+...: Two access patterns, normal access and cross-origin access pattern
+</p>
+
+<p class='phone'>
+(btw, the m2m case and direct access case in my slide corresponds to the "normal access case" in his slides <br>
+...: 3 candidate solutions. PAKE-based approach, OAuth/ACE based approach, Device vendor issued certificate <br>
+... 1. User's approval, 2. webauthn-like trust model (app layer solution), 3. trust model (tls-layer solution) <br>
+... 1. Use PAKE based on user's approval <br>
+... Add type: "pake" parameter to fetch API. In this case, a confirmation UI is shown <br>
+... before 2 and 3, describe WebAuthn's trust model <br>
+... There is a trust relation between FIDO server and Authenticator / RP and FIDO server <br>
+... This trust model can be matched <br>
+... approach 2: calls fetch API with rpk + raw public key or fingerprint / pkix + SPKI based fingerprint
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; ...:
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> In the WebAuthn case the authenticator device is guaranteed to be secured, but we cannot assume that local device is secured in this case
+</p>
+
+<p class='phone'>
+<cite>ajitomi:</cite> (approach 3) use private CA certs based on device attestation and user approval <br>
+...: needs same kind of extension to fetch API <br>
+... browser regards this value (spki fingerprint) as a temporary trust anchor
+</p>
+
+<p class='phone'>
+<cite>horiuchi:</cite> in this case, authorization server needs to know that resource server is in local network. how does it do so?
+</p>
+
+<p class='phone'>
+<cite>ajitomi:</cite> addressed in last TPAC, please check slide
+</p>
+
+<h3 id="item05">Wrap-up</h3>
+
+<p class='phone'>
+<cite>igarashi:</cite> one of the big issue is that we need to distinguish between managed and unmanaged network
+</p>
+
+<p class='irc'>
+&lt;<cite>urata</cite>&gt; igarashi: Martin's idea is for managed network <br>
+...: we mostly worked on unmanaged network
+</p>
+
+<p class='phone'>
+<cite>kouhei:</cite> think the use cases are sufficient, but what are the technical constraints?
+</p>
+
+<p class='phone'>
+<cite>igarashi:</cite> next steps: we need to clear the scope. continue discussion on GitHub / follow-up F2F meeting
+</p>
+
+
+</div>
+<h2><a name="ActionSummary">Summary of Action Items</a></h2>
+<!-- Action Items -->
+
+<h2><a name="ResolutionSummary">Summary of Resolutions</a></h2>
+<!-- Resolutions -->
+<ol></ol>
+
+
+[End of minutes] <br>
+<hr>
+
+<address>
+  Minutes manually created (not a transcript), formatted by David Booth's 
+  <a href="http://dev.w3.org/cvsweb/~checkout~/2002/scribe/scribedoc.htm">scribe.perl</a> version 1.154 (<a href="http://dev.w3.org/cvsweb/2002/scribe/">CVS log</a>)<br>
+  $Date: 2018/09/25 16:35:56 $ 
+</address>
+<div class="diagnostics">
+
+</div>
+</body>
+</html>
